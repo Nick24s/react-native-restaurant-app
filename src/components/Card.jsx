@@ -1,19 +1,21 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-export default function Card({ name, imageUrl, price, subtitle }) {
+export default function Card({ id,name, imageUrl, price, subtitle, onPress }) {
   return (
-    <View style={[styles.container]}>
-      <Image
-        source={{ uri: imageUrl }}
-        style={styles.image}
-        resizeMode="cover"
-      />
-      <View style={styles.content}>
-        <Text style={styles.title}>{name}</Text>
-        {subtitle && <Text style={styles.subtitle}>{subtitle}</Text>}
-      <Text style={styles.price}>{price.toFixed(2)}</Text>
+    <TouchableOpacity onPress={() => onPress(id) }>
+      <View style={[styles.container]}>
+        <Image
+          source={{ uri: imageUrl }}
+          style={styles.image}
+          resizeMode="cover"
+        />
+        <View style={styles.content}>
+          <Text style={styles.title}>{name}</Text>
+          {subtitle && <Text style={styles.subtitle}>{subtitle}</Text>}
+          <Text style={styles.price}>{price.toFixed(2)}</Text>
+        </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 
