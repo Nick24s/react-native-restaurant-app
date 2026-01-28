@@ -18,13 +18,13 @@ export default function HomeScreen() {
         {/* feature section */}
         <View style={styles.section}>
             <Text style={styles.sectionTitle}>Featured Items</Text>
-            <View style={styles.featuredList}>
+            <ScrollView horizontal style={styles.featuredList}>
             {featuredItems.map((item) => (
-                <View key={item.id} >
+                <View key={item.id} style={styles.featuredCard}>
                     <Card {...item}/>
                 </View>
             ) )}
-            </View>
+            </ScrollView>
         </View>
         {/* categorhy section */}
     </ScrollView>
@@ -68,6 +68,10 @@ const styles = StyleSheet.create({
         color: '#fff',
         opacity: 0.8,
     },
+     section: {
+        padding: 16,
+        paddingBottom: 8,
+    },
     sectionTitle : {
         fontSize : 20,
         fontWeight : '700',
@@ -76,7 +80,7 @@ const styles = StyleSheet.create({
     },
      featuredList: {
         paddingRight: 16,
-        // flexDirection: 'row',
+        flexDirection: 'row',
     },
     featuredCard: {
         width: 200,
