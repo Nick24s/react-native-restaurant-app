@@ -10,6 +10,10 @@ export default function HomeScreen({navigation}) {
         navigation.navigate('Category', {categoryId});
     }
 
+    const itemPressHandler = (itemId) => {
+        navigation.navigate('Details', {itemId})
+    }
+
   return (
     <ScrollView>
       <View style={styles.header}>
@@ -30,7 +34,7 @@ export default function HomeScreen({navigation}) {
         <ScrollView horizontal style={styles.featuredList}>
           {featuredItems.map((item) => (
             <View key={item.id} style={styles.featuredCard}>
-              <Card {...item} />
+              <Card {...item} onPress={itemPressHandler}/>
             </View>
           ))}
         </ScrollView>
