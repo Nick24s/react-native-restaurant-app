@@ -1,14 +1,14 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-export default function CategoryCard ({title,itemCount = 0}) {
+export default function CategoryCard ({id,title,itemCount = 0, onPress}) {
     return (
-        <View style={styles.container}>
+        <TouchableOpacity onPress={() => onPress(id)} style={styles.container}>
             <View style={styles.content}>
                 <Text style={styles.title}>{title}</Text>
                 <Text style={styles.itemCount}>{itemCount} items</Text>
             </View>
             <Text style={styles.arrow}>›</Text>
-        </View>
+        </TouchableOpacity>
     );
 };
 
