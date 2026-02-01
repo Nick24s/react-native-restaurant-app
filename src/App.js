@@ -1,4 +1,4 @@
-import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+ import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import RootNavigator from "./navigation/RootNavigator";
 import { StatusBar } from "expo-status-bar";
 

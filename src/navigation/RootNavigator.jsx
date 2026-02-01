@@ -18,7 +18,7 @@ export default function RootNavigator() {
         options={{
             title : 'Home',
             headerShown : false,
-            tabBarIcon : ({color, size}) => <Ionicons name="home" size={size} color={color} />,
+            tabBarIcon : ({color, size}) => <Ionicons name="menu" size={size} color={color} />,
             }}/>
         <Tabs.Screen 
         name="Cart"
