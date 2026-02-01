@@ -4,27 +4,32 @@ import Card from "../components/Card";
 import CategoryCard from "../components/CategoryCard";
 import { useEffect, useState } from "react";
 import { categoryApi , mealApi} from "../api";
+import { RefreshControl } from "react-native";
 
 export default function HomeScreen({navigation}) {
   const [categories, setCategories] = useState([]);
   const [featured, setFeatured] = useState([]);
+  const [toggleRefresh, setToggleRefresh] = useState(false);
+  const [refreshing, setRefreshing] = useState(true);
+  
   useEffect(() => {
-     categoryApi.getAll()
-    .then(result => {
-      setCategories(result.data);
-    })
-    .catch(error => {
-     alert(error.message)
-    });
+    async function fetchData() {
+      setRefreshing(true);
+      try {
+        const CategoryResult = await categoryApi.getAll();
+        setCategories(CategoryResult.data);
 
-    mealApi.getFeatured()
-    .then(result => {
-      setFeatured(result.data);
-  })
-    .catch(err => alert('Cannot get featured items: ' + err.message)
-    )
-    
-    },[])
+        const featuredResult = await mealApi.getFeatured();
+        setFeatured(featuredResult.data);
+
+      } catch (error) {
+          alert('cannot load data');
+      } finally {
+      setRefreshing(false);
+      }
+    }
+    fetchData();
+    },[toggleRefresh])
 
     const categoryPressHandler = (categoryId) => {
         navigation.navigate('Category', {categoryId});
@@ -34,8 +39,13 @@ export default function HomeScreen({navigation}) {
         navigation.navigate('Details', {itemId})
     }
 
+    const refreshHandler = () => {
+    setToggleRefresh(!toggleRefresh);
+    }
   return (
-    <ScrollView>
+    <ScrollView 
+    refreshControl={<RefreshControl refreshing={refreshing} onRefresh={refreshHandler} />}
+    >
       <View style={styles.header}>
         <Text style={styles.restaurantName}>Tasty Bites</Text>
         <View style={styles.headerInfo}>
