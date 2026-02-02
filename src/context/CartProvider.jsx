@@ -15,7 +15,6 @@ export default function CartProvider({children}){
                 "featured" : false,
                 "imageUrl" : "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400"
             },
-            extras : {},
             quantity : 2,
         },
         { meal : {
@@ -26,18 +25,27 @@ export default function CartProvider({children}){
       "price": 13.99,
       "imageUrl": "https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=400"
         },
-        extras : {},
         quantity : 3,
 
     },
     ],
         total : 2,
     });
+
+        const addToCart = (meal, quantity) => {
+       setState((oldState)=> ({
+        items : [...oldState.items, {meal, quantity}],
+        total : oldState.total + quantity,
+       }))
+    }
     
     const data ={
         items : state.items,
         total : state.total,
+        addToCart
     }
+
+
 
    return (
     <CartContext.Provider value={data}>

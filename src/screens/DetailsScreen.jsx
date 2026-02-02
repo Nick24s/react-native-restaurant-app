@@ -1,14 +1,14 @@
 import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
-import { getItemById } from "../data/menuItems";
 import Button from "../components/Button";
 import QuantityStepper from "../components/QuantityStepper";
 import { useEffect, useState } from "react";
 import { mealApi } from "../api";
+import { useCartContext } from "../context/CartContext";
 
 export default function DetailsScreen({route, navigation}){
     const [quantity, setQuantity] = useState(1);
     const [meal,setMeal] = useState({});
-    
+    const { addToCart } = useCartContext();
     const {itemId} = route.params;
 
     useEffect(() => {
@@ -21,6 +21,12 @@ export default function DetailsScreen({route, navigation}){
         });
     },[itemId])
 
+    const addToCartHandler = () => {
+        addToCart(meal, quantity);
+        setQuantity(1);
+        alert('Item added to cart!');
+    }
+
     return (
         <View style={styles.container}>
             <ScrollView>
@@ -32,7 +38,7 @@ export default function DetailsScreen({route, navigation}){
                 <View style={styles.content}>
                     <Text style={styles.name}>{meal?.name}</Text>
                     <Text style={styles.description}>{meal?.description}</Text>
-                    <Text style={styles.basePrice}>Base price : ${meal?.price.toFixed(2)}</Text>
+                    <Text style={styles.basePrice}>Base price : ${meal?.price?.toFixed(2)}</Text>
                     <View style={styles.divider}/>
 
                     {/* extra selector */}
@@ -53,7 +59,11 @@ export default function DetailsScreen({route, navigation}){
                         <Text style={styles.totalPrice}>${meal?.price && (meal?.price * quantity).toFixed(2)}</Text>
                     </View>
                     <View style={styles.footerButtons}>
-                        <Button style={styles.addButton} title="Add to Cart"/>
+                        <Button 
+                        style={styles.addButton} 
+                        title="Add to Cart" 
+                        onPress={addToCartHandler}
+                        />
                         <Button style={styles.viewCartButton} variant="outline" title="View Cart" onPress={ () => navigation.navigate('CartModal')}/>
 
                     </View>
