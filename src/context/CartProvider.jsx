@@ -27,7 +27,7 @@ export default function CartProvider({children}){
       "imageUrl": "https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=400"
         },
         extras : {},
-        quantity : 3
+        quantity : 3,
 
     },
     ],
