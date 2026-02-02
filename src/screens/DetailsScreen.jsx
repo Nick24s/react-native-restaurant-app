@@ -35,7 +35,7 @@ export default function DetailsScreen({route, navigation}){
                     </View>
                     <View style={styles.footerButtons}>
                         <Button style={styles.addButton} title="Add to Cart"/>
-                        <Button style={styles.viewCartButton} variant="outline" title="View Cart" onPress={ () => navigation.navigate('Cart')}/>
+                        <Button style={styles.viewCartButton} variant="outline" title="View Cart" onPress={ () => navigation.navigate('CartModal')}/>
 
                     </View>
                 </View>

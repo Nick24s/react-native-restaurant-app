@@ -6,7 +6,7 @@ import { NavigationContainer } from "@react-navigation/native";
 export default function RootNavigator() {
     const Stack = createNativeStackNavigator();
     return (
-            <NavigationContainer>
+            
 
         <Stack.Navigator screenOptions={{ headerShown : false}}>
             <Stack.Screen name="TabNavigator" component={TabNavigator} options={{headerShown : false}} />
@@ -22,6 +22,6 @@ export default function RootNavigator() {
             />
             
         </Stack.Navigator>
-            </NavigationContainer>
+          
     )
 }
