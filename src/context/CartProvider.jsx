@@ -69,6 +69,13 @@ export default function CartProvider({children}){
         return state.items.reduce((acc, item) => acc + (item.meal.price) * item.quantity, 0);
     }, [state.items]);
 
+    const clearCart = () => {
+        setState({
+            items : [],
+            total : 0,
+        });
+    }
+
     const data ={
         items : state.items,
         total : state.total,
@@ -77,6 +84,7 @@ export default function CartProvider({children}){
         increaseQuantity,
         decreaseQuantity,
         removeItem,
+        clearCart
     };
 
 

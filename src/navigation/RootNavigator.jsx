@@ -2,6 +2,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import TabNavigator from "./TabNavigator";
 import CartScreen from "../screens/CartScreen";
 import { NavigationContainer } from "@react-navigation/native";
+import CheckoutScreen from "../screens/CheckoutScreen";
 
 export default function RootNavigator() {
     const Stack = createNativeStackNavigator();
@@ -19,6 +20,17 @@ export default function RootNavigator() {
                 title : 'Cart',
                 animation : 'slide_from_right'
                 }}
+            />
+
+            <Stack.Screen
+            name='CheckoutModal'
+            component={CheckoutScreen}
+            options={{
+                presentation : 'modal',
+                headerShown : true, 
+                title : 'Checkout',
+                animation : 'slide_from_right'
+            }}
             />
             
         </Stack.Navigator>

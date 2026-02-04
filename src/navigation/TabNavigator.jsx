@@ -19,11 +19,12 @@ export default function TabNavigator() {
             tabBarIcon : ({color, size}) => <Ionicons name="menu" size={size} color={color} />,
             }}/>
         <Tabs.Screen 
-        name="CartStack"
+        name="CartTab"
         component={CartNavigator}
         options={{
            tabBarIcon : ({color, size}) => <Ionicons name="cart" size={size} color={color} />,
            headerShown : false,
+           title : 'Cart',
         }}
         />
         <Tabs.Screen 
