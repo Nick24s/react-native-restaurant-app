@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { CartContext } from "./CartContext";
 
 export default function CartProvider({children}){
@@ -29,7 +29,7 @@ export default function CartProvider({children}){
 
     },
     ],
-        total : 2,
+        total : 5,
     });
 
         const addToCart = (meal, quantity) => {
@@ -65,14 +65,19 @@ export default function CartProvider({children}){
         });
     };
     
+    const totalPrice = useMemo(() => {
+        return state.items.reduce((acc, item) => acc + (item.meal.price) * item.quantity, 0);
+    }, [state.items]);
+
     const data ={
         items : state.items,
         total : state.total,
+        totalPrice,
         addToCart,
         increaseQuantity,
         decreaseQuantity,
-        removeItem
-    }
+        removeItem,
+    };
 
 
 

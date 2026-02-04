@@ -1,9 +1,10 @@
-import { FlatList, StyleSheet, View } from "react-native";
+import { FlatList, StyleSheet, Text, View } from "react-native";
 import CartItem from "../components/CartItem";
 import { useCartContext } from "../context/CartContext";
+import Button from "../components/Button";
 
 export default function CartScreen() {
-  const { items } = useCartContext();
+  const { items, total, totalPrice } = useCartContext();
 
   return (
     <View style={styles.container}>
@@ -19,6 +20,22 @@ export default function CartScreen() {
             </View>
   )}
       />
+      <View style={styles.footer}>
+        <View style={styles.summaryRow}>
+          <Text style={styles.summaryLabel}>Items ({total})</Text>
+          {/* <Text style={styles.summaryValue}>${total}</Text> */}
+        </View>
+        <View style={styles.summaryRow}>
+          <Text style={styles.totalLabel}>Total</Text>
+          <Text style={styles.totalValue}>${totalPrice.toFixed(2)}</Text>
+        </View>
+
+        <Button 
+          style={styles.checkoutButton} 
+          disabled={items.length === 0}
+          title="Proceed to Checkout"
+        />
+      </View>
     </View>
   );
 }

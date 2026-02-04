@@ -1,5 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import CartScreen from '../screens/CartScreen';
+import CheckoutScreen from '../screens/CheckoutScreen';
 
 export default function CartNavigator() {
     const Stack = createNativeStackNavigator();
@@ -11,6 +12,12 @@ export default function CartNavigator() {
             component={CartScreen}
             options={{ title: 'Your Cart' }}    
             />
+
+        <Stack.Screen 
+            name="Checkout"
+            component={CheckoutScreen}
+            options={{ title: 'Checkout' }}
+        />    
         </Stack.Navigator>
     );
 }
