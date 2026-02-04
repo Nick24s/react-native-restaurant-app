@@ -55,12 +55,23 @@ export default function CartProvider({children}){
         }))
     }
     
+    const removeItem = (index) => {
+        setState((oldState) => {
+            const itemForRemoval = oldState.items.find((_, i) => i === index);
+            return {
+                items : oldState.items.filter((item) => item.meal.id !== itemForRemoval.meal.id),
+                total : oldState.total - itemForRemoval.quantity,
+            }
+        });
+    };
+    
     const data ={
         items : state.items,
         total : state.total,
         addToCart,
         increaseQuantity,
-        decreaseQuantity
+        decreaseQuantity,
+        removeItem
     }
 
 
