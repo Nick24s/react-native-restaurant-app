@@ -1,9 +1,9 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import HomeNavigator from "./HomeNavigator";
-import CartScreen from "../screens/CartScreen";
 import InfoScreen from "../screens/InfoScreen";
 import { Ionicons } from "@expo/vector-icons";
+import CartNavigator from "./CartNavigator";
 
 export default function TabNavigator() {
   const Tabs = createBottomTabNavigator();
@@ -19,10 +19,11 @@ export default function TabNavigator() {
             tabBarIcon : ({color, size}) => <Ionicons name="menu" size={size} color={color} />,
             }}/>
         <Tabs.Screen 
-        name="Cart"
-        component={CartScreen}
+        name="CartStack"
+        component={CartNavigator}
         options={{
-           tabBarIcon : ({color, size}) => <Ionicons name="cart" size={size} color={color} />
+           tabBarIcon : ({color, size}) => <Ionicons name="cart" size={size} color={color} />,
+           headerShown : false,
         }}
         />
         <Tabs.Screen 
